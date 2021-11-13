@@ -1,9 +1,9 @@
+import * as React from 'react';
 import './App.css';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
@@ -11,10 +11,20 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import Divider from '@mui/material/Divider';
+import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import Paper from '@mui/material/Paper';
+import Card from '@mui/material/Card';
+import LogoutIcon from '@mui/icons-material/Logout';
+
+const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 function App() {
+  const theme = useTheme();
+  const colorMode = React.useContext(ColorModeContext);
   return (
-    <div>
+    <Paper elevation={0} style={{height: "100vh" }}>
       {/* Basic App Bar */}
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
@@ -22,26 +32,29 @@ function App() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Expense Tracker
             </Typography>
-            <Button color="inherit">Login</Button>
+            <IconButton sx={{ mx: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
+              {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+            </IconButton>
+            <IconButton aria-label="log out">
+                <LogoutIcon />
+            </IconButton>
           </Toolbar>
         </AppBar>
       </Box>
 
       <Container maxWidth="sm">
 
-        <Box 
+        <Card
           sx={{
             my: 2,
             p: 4,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            overflow: 'hidden',
-            borderRadius: '12px',
-            boxShadow: 1
+            overflow: 'hidden'
           }}
         >
-          
+          {/* Income */}
           <Box 
             sx={{
               textAlign: 'center',
@@ -53,9 +66,10 @@ function App() {
               $511.00
             </Box>
           </Box>
-          
+        
           <Divider orientation="vertical" variant="middle" flexItem />
-
+          
+          {/* Expense */}
           <Box 
             sx={{
               textAlign: 'center',
@@ -67,13 +81,13 @@ function App() {
               $511.00
             </Box>
           </Box>
-        </Box>
-        
+        </Card>
+    
         {/* Transaction history */}
         <Stack component="ul" spacing={2} sx={{pl:0, m:0}}>
 
           {/* Transaction item */}
-          <Box 
+          <Card 
             component="li"
             sx={{
               typography: 'body1',
@@ -83,10 +97,8 @@ function App() {
               alignItems: 'center',
               justifyContent: 'space-between',
               overflow: 'hidden',
-              borderRadius: '12px',
               borderRight: '4px solid',
-              borderColor: 'success.main',
-              boxShadow: 1
+              borderColor: 'success.main'
             }}
           >
             <Box>
@@ -110,10 +122,10 @@ function App() {
                 <DeleteIcon />
               </IconButton>
             </Box>
-          </Box>
+          </Card>
           
           {/* Transaction item */}
-          <Box
+          <Card
             component="li"
             sx={{
               typography: 'body1',
@@ -123,10 +135,8 @@ function App() {
               alignItems: 'center',
               justifyContent: 'space-between',
               overflow: 'hidden',
-              borderRadius: '12px',
               borderRight: '4px solid',
-              borderColor: 'success.main',
-              boxShadow: 1
+              borderColor: 'success.main'
             }}
           >
             <Box>
@@ -150,10 +160,10 @@ function App() {
                 <DeleteIcon />
               </IconButton>
             </Box>
-          </Box>
+          </Card>
 
           {/* Transaction item */}
-          <Box
+          <Card
             component="li"
             sx={{
               typography: 'body1',
@@ -163,10 +173,8 @@ function App() {
               alignItems: 'center',
               justifyContent: 'space-between',
               overflow: 'hidden',
-              borderRadius: '12px',
               borderRight: '4px solid',
-              borderColor: 'error.main',
-              boxShadow: 1
+              borderColor: 'error.main'
             }}
           >
             <Box>
@@ -190,7 +198,7 @@ function App() {
                 <DeleteIcon />
               </IconButton>
             </Box>
-          </Box>
+          </Card>
         
         </Stack>
 
@@ -199,9 +207,36 @@ function App() {
         </Fab>
 
       </Container>
-
-    </div>
+    </Paper>
   );
 }
 
-export default App;
+export default function ToggleColorMode() {
+  const [mode, setMode] = React.useState('light');
+  const colorMode = React.useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+      },
+    }),
+    [],
+  );
+
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+        },
+      }),
+    [mode],
+  );
+
+  return (
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </ColorModeContext.Provider>
+  );
+}
