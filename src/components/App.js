@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
@@ -24,7 +24,7 @@ function App() {
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
   return (
-    <Paper elevation={0} style={{height: "100vh" }}>
+    <Paper elevation={0} square style={{height: "100vh" }}>
       {/* Basic App Bar */}
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
@@ -35,7 +35,7 @@ function App() {
             <IconButton sx={{ mx: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
               {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
             </IconButton>
-            <IconButton aria-label="log out">
+            <IconButton aria-label="log out" color="inherit">
                 <LogoutIcon />
             </IconButton>
           </Toolbar>
@@ -44,50 +44,43 @@ function App() {
 
       <Container maxWidth="sm">
 
-        <Card
-          sx={{
-            my: 2,
-            p: 4,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            overflow: 'hidden'
-          }}
-        >
-          {/* Income */}
-          <Box 
-            sx={{
-              textAlign: 'center',
-              overflow: 'hidden',
-            }}
-          >
-            <Box sx={{ color: 'text.secondary', typography: 'subtitle1' }}>Income</Box>
-            <Box sx={{ color: 'success.main', typography: 'h5' }}>
-              $511.00
-            </Box>
-          </Box>
-        
-          <Divider orientation="vertical" variant="middle" flexItem />
-          
-          {/* Expense */}
-          <Box 
-            sx={{
-              textAlign: 'center',
-              overflow: 'hidden',
-            }}
-          >
-            <Box sx={{ color: 'text.secondary', typography: 'subtitle1' }}>Expense</Box>
-            <Box sx={{ color: 'error.main', typography: 'h5' }}>
-              $511.00
-            </Box>
-          </Box>
-        </Card>
-    
+        <Grid container spacing={2} sx={{ mt: 2, mb: 4 }}>
+          <Grid item xs={12} md={6}>
+            <Card
+              variant="outlined"
+              sx={{
+                p: 2,
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                overflow: 'hidden'
+              }}
+            >
+              <Box sx={{ color: 'text.secondary', typography: 'subtitle1' }}>Income</Box>
+              <Box sx={{ color: 'success.main', typography: 'h5' }}>$511.00</Box>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Card
+              variant="outlined"
+              sx={{
+                p: 2,
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                overflow: 'hidden'
+              }}
+            >
+              <Box sx={{ color: 'text.secondary', typography: 'subtitle1' }}>Expense</Box>
+              <Box sx={{ color: 'error.main', typography: 'h5' }}>$784.40</Box>
+            </Card>
+          </Grid>
+        </Grid>
+         
         {/* Transaction history */}
         <Stack component="ul" spacing={2} sx={{pl:0, m:0}}>
 
           {/* Transaction item */}
-          <Card 
+          <Card
+            variant="outlined"
             component="li"
             sx={{
               typography: 'body1',
@@ -98,7 +91,7 @@ function App() {
               justifyContent: 'space-between',
               overflow: 'hidden',
               borderRight: '4px solid',
-              borderColor: 'success.main'
+              borderRightColor: 'success.main'
             }}
           >
             <Box>
@@ -126,6 +119,7 @@ function App() {
           
           {/* Transaction item */}
           <Card
+            variant="outlined"
             component="li"
             sx={{
               typography: 'body1',
@@ -136,7 +130,7 @@ function App() {
               justifyContent: 'space-between',
               overflow: 'hidden',
               borderRight: '4px solid',
-              borderColor: 'success.main'
+              borderRightColor: 'success.main'
             }}
           >
             <Box>
@@ -164,6 +158,7 @@ function App() {
 
           {/* Transaction item */}
           <Card
+            variant="outlined"
             component="li"
             sx={{
               typography: 'body1',
@@ -174,7 +169,7 @@ function App() {
               justifyContent: 'space-between',
               overflow: 'hidden',
               borderRight: '4px solid',
-              borderColor: 'error.main'
+              borderRightColor: 'error.main'
             }}
           >
             <Box>
