@@ -8,19 +8,11 @@ import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
 import Divider from '@mui/material/Divider';
 
-
 function App() {
-  const handleClick = () => {
-    console.log('Handle Click');
-  }
-
   return (
     <div>
       {/* Basic App Bar */}
@@ -37,10 +29,47 @@ function App() {
 
       <Container maxWidth="sm">
 
-        <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
-          History
-        </Typography>
+        <Box 
+          sx={{
+            my: 2,
+            p: 4,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            overflow: 'hidden',
+            borderRadius: '12px',
+            boxShadow: 1
+          }}
+        >
+          
+          <Box 
+            sx={{
+              textAlign: 'center',
+              overflow: 'hidden',
+            }}
+          >
+            <Box sx={{ color: 'text.secondary', typography: 'subtitle1' }}>Income</Box>
+            <Box sx={{ color: 'success.main', typography: 'h5' }}>
+              $511.00
+            </Box>
+          </Box>
+          
+          <Divider orientation="vertical" variant="middle" flexItem />
 
+          <Box 
+            sx={{
+              textAlign: 'center',
+              overflow: 'hidden',
+            }}
+          >
+            <Box sx={{ color: 'text.secondary', typography: 'subtitle1' }}>Expense</Box>
+            <Box sx={{ color: 'error.main', typography: 'h5' }}>
+              $511.00
+            </Box>
+          </Box>
+        </Box>
+        
+        {/* Transaction history */}
         <Stack component="ul" spacing={2} sx={{pl:0, m:0}}>
 
           {/* Transaction item */}
@@ -164,6 +193,10 @@ function App() {
           </Box>
         
         </Stack>
+
+        <Fab color="primary" aria-label="Add transaction">
+          <AddIcon />
+        </Fab>
 
       </Container>
 
