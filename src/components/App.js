@@ -17,7 +17,6 @@ import Store from '../context/Store';
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 function App() {
-
   return (
     <Store>
       
@@ -39,8 +38,6 @@ function App() {
           </Grid>
         </Grid>
         
-        <Typography id="recent-transactions-heading" variant="h6" component="h2" sx={{ my: 2, fontWeight: 'light' }}>Recent Transactions</Typography>
-
         <List />
         
       </Container>
