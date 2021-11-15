@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -7,8 +7,6 @@ import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import TextField from '@mui/material/TextField';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -25,52 +23,77 @@ function Modal(props) {
 
   const { open, onClose } = props;
 
+  // For theme toggler
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
+  // State
+  const [type, setType] = useState('expense');
+  const [amount, setAmount] = useState();
+  const [description, setDescription] = useState('');
+
+  // Callbacks
   const handleClose = () => {
     onClose();
   };
 
-  const [transactionType, setTransactionType] = React.useState('Expense');
+  const handleTypeChange = (e) => {
+    setType(e.target.value);
+  };
 
-  const handleChange = (event) => {
-    setTransactionType(event.target.value);
+  const handleAmountChange = (e) => {
+    setAmount(e.target.value);
+  };
+
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
   };
 
   return (
     <Dialog fullScreen={fullScreen} open={open} onClose={handleClose}>
-      <DialogTitle>New transaction</DialogTitle>
-      <DialogContent>
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Type</FormLabel>
-          <RadioGroup row defaultValue="expense" aria-label="transaction type" name="row-radio-buttons-group">
-            <FormControlLabel value="expense" control={<Radio />} label="Expense" />
-            <FormControlLabel value="income" control={<Radio />} label="Income" />
-          </RadioGroup>
-        </FormControl>  
-        <FormControl sx={{my: 2}} fullWidth>
-          <InputLabel htmlFor="amount">Amount</InputLabel>
-          <OutlinedInput
+      <form>
+        <DialogTitle>New transaction</DialogTitle>
+        <DialogContent>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Type</FormLabel>
+            <RadioGroup
+              row
+              aria-label="transaction type"
+              name="type"
+              value={type}
+              onChange={handleTypeChange}
+            >
+              <FormControlLabel value="expense" control={<Radio />} label="Expense" />
+              <FormControlLabel value="income" control={<Radio />} label="Income" />
+            </RadioGroup>
+          </FormControl>
+
+          <TextField
             id="amount"
-            value=''
-            onChange=''
-            startAdornment={<InputAdornment position="start">€</InputAdornment>}
+            required
+            sx={{ my: 2 }}
+            value={amount}
+            onChange={handleAmountChange}
+            inputProps={{ min: '0', step: "0.01", startAdornment: <InputAdornment position="start">€</InputAdornment> }} 
+            fullWidth
             label="Amount"
+            type="number"
           />
-        </FormControl>
-    
-        <TextField
-          id="description"
-          fullWidth
-          label="Description"
-          variant="outlined"
-        />
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleClose}>Save</Button>
-      </DialogActions>
+
+          <TextField
+            id="description"
+            required
+            value={description}
+            onChange={handleDescriptionChange}
+            fullWidth
+            label="Description"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button type="submit">Save</Button>
+        </DialogActions>
+      </form>
     </Dialog>
   )
 }

@@ -24,11 +24,11 @@ function App() {
 
       <Container maxWidth="sm" sx={{ mt: 2, marginBottom: '88px' }}>
 
-        <Typography variant="h6" component="h2" sx={{ my: 2, fontWeight: 'light' }}>Overview</Typography>
+        <Typography id="overview-heading" variant="h6" component="h2" sx={{ my: 2, fontWeight: 'light' }}>Overview</Typography>
 
         <Balance />
 
-        <Grid container spacing={2}>
+        <Grid aria-labelledby="overview-heading" container spacing={2}>
           <Grid item xs={6}>
             <Income />
           </Grid>
@@ -37,9 +37,9 @@ function App() {
           </Grid>
         </Grid>
         
-        <Typography variant="h6" component="h2" sx={{ my: 2, fontWeight: 'light' }}>Recent Transactions</Typography>
+        <Typography id="recent-transactions-heading" variant="h6" component="h2" sx={{ my: 2, fontWeight: 'light' }}>Recent Transactions</Typography>
 
-        <Stack component="ul" spacing={2} sx={{pl:0, m:0}}>
+        <Stack component="ul" aria-labelledby="recent-transactions-heading" spacing={2} sx={{pl:0, m:0}}>
 
           <Item />
           <Item />
