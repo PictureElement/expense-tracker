@@ -79,7 +79,7 @@ export default function ToggleColorMode() {
     [mode],
   );
 
-  theme = responsiveFontSizes(theme, {factor: 10});
+  theme = responsiveFontSizes(theme, {factor: 1});
 
   return (
     <ColorModeContext.Provider value={colorMode}>
