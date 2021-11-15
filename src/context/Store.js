@@ -2,14 +2,17 @@ import React, { createContext, useState } from 'react';
 
 // Initial state
 const initialState = {
-  transactions: [
-    { id: 4, type: 'expense', amount: 550.50, description: 'Camera' },
-    { id: 3, type: 'income', amount: 1800.00, description: 'Salary' },
-    { id: 2, type: 'expense', amount: 7, description: 'Cinema ticket' },
-    { id: 1, type: 'income', amount: 1000000, description: 'Winning the Lottery dhakd daldah' }
-  ],
-  error: false
+  transactions: []
 }
+
+// const initialState = {
+//   transactions: [
+//     { id: 4, type: 'expense', amount: 550.50, description: 'Camera' },
+//     { id: 3, type: 'income', amount: 1800.00, description: 'Salary' },
+//     { id: 2, type: 'expense', amount: 7, description: 'Cinema ticket' },
+//     { id: 1, type: 'income', amount: 1000000, description: 'Winning the Lottery' }
+//   ]
+// }
 
 // Create context object
 export const Context = createContext();
