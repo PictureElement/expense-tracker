@@ -5,9 +5,7 @@ import Item from './Item';
 
 function List() {
   const [state, setState] = useContext(Context);
-
-  console.log(state);
-
+  
   const items = state.transactions.map(item => (
     <Item item={item} key={item.id} />
   ));

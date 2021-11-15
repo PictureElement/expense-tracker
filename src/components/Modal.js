@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -15,10 +15,13 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
+import { Context } from '../context/Store';
 
 function Modal(props) {
 
   const { open, onClose } = props;
+
+  const [state, setState] = useContext(Context);
 
   // For theme toggler
   const theme = useTheme();
@@ -46,9 +49,23 @@ function Modal(props) {
     setDescription(e.target.value);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Add transaction
+    // Use ... spread syntax to create a new array using state array as part of it
+    setState({
+      ...state,
+      transactions: [{ id: state.transactions.length + 1, type, amount, description }, ...state.transactions]
+    });
+
+    // Close modal
+    onClose();
+  };
+
   return (
     <Dialog fullScreen={fullScreen} open={open} onClose={handleClose}>
-      <form>
+      <form onSubmit={handleSubmit}>
         <DialogTitle>New transaction</DialogTitle>
         <DialogContent>
           <FormControl component="fieldset">
