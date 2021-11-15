@@ -1,208 +1,56 @@
 import * as React from 'react';
 import './App.css';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
 import Grid from '@mui/material/Grid';
-import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
-import Paper from '@mui/material/Paper';
-import Card from '@mui/material/Card';
-import LogoutIcon from '@mui/icons-material/Logout';
+import Header from './Header';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { grey } from '@mui/material/colors';
+import Balance from './Balance';
+import Income from './Income';
+import Expense from './Expense';
+import Item from './Item';
+import Modal from './Modal';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 function App() {
-  const theme = useTheme();
-  const colorMode = React.useContext(ColorModeContext);
   return (
-    <Paper elevation={0} square style={{height: "100vh" }}>
-      {/* Basic App Bar */}
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Expense Tracker
-            </Typography>
-            <IconButton sx={{ mx: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
-              {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-            </IconButton>
-            <IconButton aria-label="log out" color="inherit">
-                <LogoutIcon />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-      </Box>
+    <div>
+      
+      <Header ColorModeContext={ColorModeContext} />
 
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" sx={{ mt: 2, marginBottom: '88px' }}>
 
-        <Grid container spacing={2} sx={{ mt: 2, mb: 4 }}>
-          <Grid item xs={12} md={6}>
-            <Card
-              variant="outlined"
-              sx={{
-                p: 2,
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                overflow: 'hidden'
-              }}
-            >
-              <Box sx={{ color: 'text.secondary', typography: 'subtitle1' }}>Income</Box>
-              <Box sx={{ color: 'success.main', typography: 'h5' }}>$511.00</Box>
-            </Card>
+        <Typography variant="h6" component="h2" sx={{ my: 2, fontWeight: 'light' }}>Overview</Typography>
+
+        <Balance />
+
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <Income />
           </Grid>
-          <Grid item xs={12} md={6}>
-            <Card
-              variant="outlined"
-              sx={{
-                p: 2,
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                overflow: 'hidden'
-              }}
-            >
-              <Box sx={{ color: 'text.secondary', typography: 'subtitle1' }}>Expense</Box>
-              <Box sx={{ color: 'error.main', typography: 'h5' }}>$784.40</Box>
-            </Card>
+          <Grid item xs={6}>
+            <Expense />
           </Grid>
         </Grid>
-         
-        {/* Transaction history */}
+        
+        <Typography variant="h6" component="h2" sx={{ my: 2, fontWeight: 'light' }}>Recent Transactions</Typography>
+
         <Stack component="ul" spacing={2} sx={{pl:0, m:0}}>
 
-          {/* Transaction item */}
-          <Card
-            variant="outlined"
-            component="li"
-            sx={{
-              typography: 'body1',
-              px: 2,
-              py: 1,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              overflow: 'hidden',
-              borderRight: '4px solid',
-              borderRightColor: 'success.main'
-            }}
-          >
-            <Box>
-              Freelancing
-            </Box>
+          <Item />
+          <Item />
+          <Item />
 
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center'
-              }}
-            >
-              <Box
-                sx={{ 
-                  mx: 1
-                }}
-              >
-                $210.00
-              </Box>
-              <IconButton aria-label="delete">
-                <DeleteIcon />
-              </IconButton>
-            </Box>
-          </Card>
-          
-          {/* Transaction item */}
-          <Card
-            variant="outlined"
-            component="li"
-            sx={{
-              typography: 'body1',
-              px: 2,
-              py: 1,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              overflow: 'hidden',
-              borderRight: '4px solid',
-              borderRightColor: 'success.main'
-            }}
-          >
-            <Box>
-              Movie
-            </Box>
-
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center'
-              }}
-            >
-              <Box
-                sx={{ 
-                  mx: 1
-                }}
-              >
-                $50.00
-              </Box>
-              <IconButton aria-label="delete">
-                <DeleteIcon />
-              </IconButton>
-            </Box>
-          </Card>
-
-          {/* Transaction item */}
-          <Card
-            variant="outlined"
-            component="li"
-            sx={{
-              typography: 'body1',
-              px: 2,
-              py: 1,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              overflow: 'hidden',
-              borderRight: '4px solid',
-              borderRightColor: 'error.main'
-            }}
-          >
-            <Box>
-              Food
-            </Box>
-
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center'
-              }}
-            >
-              <Box
-                sx={{ 
-                  mx: 1
-                }}
-              >
-                $25.00
-              </Box>
-              <IconButton aria-label="delete">
-                <DeleteIcon />
-              </IconButton>
-            </Box>
-          </Card>
-        
         </Stack>
 
-        <Fab color="primary" aria-label="Add transaction">
-          <AddIcon />
-        </Fab>
-
       </Container>
-    </Paper>
+
+      <Modal />
+    </div>
   );
 }
 
@@ -222,6 +70,16 @@ export default function ToggleColorMode() {
       createTheme({
         palette: {
           mode,
+          ...(mode === 'light'
+            ? {
+                // palette values for light mode
+                background: {
+                  default: grey[100]
+                }
+              }
+            : {
+                // palette values for dark mode
+              }),
         },
       }),
     [mode],
@@ -230,6 +88,7 @@ export default function ToggleColorMode() {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
+        <CssBaseline />
         <App />
       </ThemeProvider>
     </ColorModeContext.Provider>

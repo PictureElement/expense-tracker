@@ -1,0 +1,7 @@
+.TextField-root, .FormControl-root {
+  width: 100% !important;
+}
+
+.datePicker {
+  width: 100%;
+}
