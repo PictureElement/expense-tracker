@@ -3,8 +3,10 @@ import React, { createContext, useState } from 'react';
 // Initial state
 const initialState = {
   transactions: [
-    { id: 1, type: 'expense', amount: '34', description: 'Camera' },
-    { id: 2, type: 'income', amount: '50', description: 'Salary' }
+    { id: 1, type: 'expense', amount: 34, description: 'Camera' },
+    { id: 2, type: 'income', amount: 50, description: 'Salary' },
+    { id: 1, type: 'expense', amount: 34, description: 'Camera' },
+    { id: 2, type: 'income', amount: 50, description: 'Salary' }
   ]
 }
 
