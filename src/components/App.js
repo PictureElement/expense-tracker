@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Header from './Header';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { grey } from '@mui/material/colors';
 import Balance from './Balance';
@@ -31,10 +31,10 @@ function App() {
 
         <Grid aria-labelledby="overview-heading" container spacing={2}>
 
-          <Grid item xs={6}>
+          <Grid item xs={6} sm={6}>
             <Income />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={6} sm={6}>
             <Expense />
           </Grid>
         </Grid>
@@ -62,7 +62,7 @@ export default function ToggleColorMode() {
     [],
   );
 
-  const theme = React.useMemo(
+  let theme = React.useMemo(
     () =>
       createTheme({
         palette: {
@@ -77,10 +77,12 @@ export default function ToggleColorMode() {
             : {
                 // palette values for dark mode
               }),
-        },
+        }
       }),
     [mode],
   );
+
+  theme = responsiveFontSizes(theme, {factor: 10});
 
   return (
     <ColorModeContext.Provider value={colorMode}>

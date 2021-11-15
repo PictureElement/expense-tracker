@@ -22,7 +22,7 @@ function Income() {
     >
       <Box sx={{ color: 'text.secondary', typography: 'overline' }}>INCOME</Box>
       {/* Use toFixed() to format and convert income to a string for visual representation */}
-      <Box sx={{ color: 'success.main', typography: 'h5' }}>+ € {income.toFixed(2)}</Box>
+      <Box sx={{ color: 'success.main', typography: 'h6', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>+ € {income.toFixed(2)}</Box>
     </Card>
   )
 }

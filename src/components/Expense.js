@@ -22,7 +22,7 @@ function Expense() {
     >
       <Box sx={{ color: 'text.secondary', typography: 'overline' }}>EXPENSE</Box>
       {/* Use toFixed() to format and convert expense to a string for visual representation */}
-      <Box sx={{ color: 'error.main', typography: 'h5' }}>− € {expense.toFixed(2)}</Box>
+      <Box sx={{ color: 'error.main', typography: 'h6', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>− € {expense.toFixed(2)}</Box>
     </Card>
   )
 }

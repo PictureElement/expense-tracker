@@ -22,31 +22,22 @@ function Item({ item }) {
       component="li"
       sx={{
         typography: 'body1',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
         px: 2,
         py: 1,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        overflow: 'hidden',
         borderLeft: '4px solid',
         borderLeftColor: item.type === 'income' ? 'success.main' : 'error.main'
       }}
     >
-      <Box>
-        {item.description}
-      </Box>
+      <Box sx={{ flex: '1 1 0', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>{item.description}</Box>
 
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center'
-        }}
-      >
-        <Box
-          sx={{ 
-            mx: 1
-          }}
-        >
+      <Box sx={{ flex: '1 1 0', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+        <Box sx={{ mx: 1, whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
           {/* Use toFixed() to format and convert amount to a string for visual representation */}
           {item.type === 'income' ? '+' : '−'} € {item.amount.toFixed(2)}
         </Box>

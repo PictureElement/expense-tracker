@@ -33,7 +33,7 @@ function Balance() {
       <Box sx={{ color: 'text.secondary', typography: 'overline' }}>BALANCE</Box>
       {/* Convert balance to a positive number using Math.abs() */}
       {/* Use toFixed() to format and convert it to a string for visual representation */}
-      <Box sx={{ typography: 'h4' }}>{balance < 0 ? '−' : '+'} € {Math.abs(balance).toFixed(2)}</Box>
+      <Box sx={{ typography: 'h4', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>{balance < 0 ? '−' : '+'} € {Math.abs(balance).toFixed(2)}</Box>
     </Card>
   )
 }
