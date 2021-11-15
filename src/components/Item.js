@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Context } from '../context/Store';
 
 function Item({ item }) {
+  const [state, setState] = useContext(Context);
+
+  const handleDeleteClick = (e) => {
+    // Delete transaction
+    // Use ... spread syntax to expand state object and override its existing property (i.e. transactions)
+    setState({
+      ...state,
+      transactions: state.transactions.filter(transaction => transaction.id !== item.id )
+    });
+  };
+
   return (
     <Card
       component="li"
@@ -37,7 +49,7 @@ function Item({ item }) {
         >
           {item.type === 'income' ? '+' : '−'} € {item.amount}
         </Box>
-        <IconButton aria-label="delete">
+        <IconButton onClick={handleDeleteClick} aria-label="delete">
           <DeleteIcon />
         </IconButton>
       </Box>

@@ -5,9 +5,10 @@ const initialState = {
   transactions: [
     { id: 1, type: 'expense', amount: 34, description: 'Camera' },
     { id: 2, type: 'income', amount: 50, description: 'Salary' },
-    { id: 1, type: 'expense', amount: 34, description: 'Camera' },
-    { id: 2, type: 'income', amount: 50, description: 'Salary' }
-  ]
+    { id: 3, type: 'expense', amount: 34, description: 'Camera' },
+    { id: 4, type: 'income', amount: 50, description: 'Salary' }
+  ],
+  error: false
 }
 
 // Create context object
