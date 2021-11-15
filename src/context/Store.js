@@ -2,20 +2,22 @@ import React, { createContext, useState } from 'react';
 
 // Initial state
 const initialState = {
-  transactions: []
+  transactions: [
+    { id: 1, type: 'expense', amount: '34', description: 'Camera' },
+    { id: 2, type: 'income', amount: '50', description: 'Salary' }
+  ]
 }
 
 // Create context object
-export const GlobalContext = createContext(initialState);
+export const Context = createContext();
 
 // Component to wrap our application and provide the state
-
 const Store = ({ children }) => {
-  const [state, setState] = useState(intialState);
+  const [state, setState] = useState(initialState);
 
   return (
     // Every Context object comes with a Provider React component
-    <GlobalContext.Provider value={[state, setState]}>{children}</GlobalContext.Provider>
+    <Context.Provider value={[state, setState]}>{children}</Context.Provider>
   )
 }
 

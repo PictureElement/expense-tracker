@@ -1,7 +1,6 @@
 import * as React from 'react';
 import './App.css';
 import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Header from './Header';
@@ -11,13 +10,14 @@ import { grey } from '@mui/material/colors';
 import Balance from './Balance';
 import Income from './Income';
 import Expense from './Expense';
-import Item from './Item';
+import List from './List';
 import Modal from './Modal';
 import Store from '../context/Store';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 function App() {
+
   return (
     <Store>
       
@@ -30,6 +30,7 @@ function App() {
         <Balance />
 
         <Grid aria-labelledby="overview-heading" container spacing={2}>
+
           <Grid item xs={6}>
             <Income />
           </Grid>
@@ -40,18 +41,12 @@ function App() {
         
         <Typography id="recent-transactions-heading" variant="h6" component="h2" sx={{ my: 2, fontWeight: 'light' }}>Recent Transactions</Typography>
 
-        <Stack component="ul" aria-labelledby="recent-transactions-heading" spacing={2} sx={{pl:0, m:0}}>
-
-          <Item />
-          <Item />
-          <Item />
-
-        </Stack>
-
+        <List />
+        
       </Container>
 
       <Modal />
-      
+
     </Store>
   );
 }

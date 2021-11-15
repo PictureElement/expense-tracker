@@ -4,7 +4,9 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-function Item() {
+function Item(props) {
+  const { id, type, amount, description } = props;
+
   return (
     <Card
       component="li"
@@ -17,11 +19,11 @@ function Item() {
         justifyContent: 'space-between',
         overflow: 'hidden',
         borderLeft: '4px solid',
-        borderLeftColor: 'success.main'
+        borderLeftColor: type === 'income' ? 'success.main' : 'error.main'
       }}
     >
       <Box>
-        Freelancing
+        {description}
       </Box>
 
       <Box
@@ -35,7 +37,7 @@ function Item() {
             mx: 1
           }}
         >
-          $210.00
+          €{amount}
         </Box>
         <IconButton aria-label="delete">
           <DeleteIcon />
