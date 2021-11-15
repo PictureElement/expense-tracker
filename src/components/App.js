@@ -13,12 +13,13 @@ import Income from './Income';
 import Expense from './Expense';
 import Item from './Item';
 import Modal from './Modal';
+import Store from '../context/Store';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 function App() {
   return (
-    <div>
+    <Store>
       
       <Header ColorModeContext={ColorModeContext} />
 
@@ -50,7 +51,8 @@ function App() {
       </Container>
 
       <Modal />
-    </div>
+      
+    </Store>
   );
 }
 
