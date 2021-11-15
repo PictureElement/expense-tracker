@@ -62,6 +62,11 @@ function Modal(props) {
 
     // Close modal
     onClose();
+
+    // Reset component state
+    setType('expense');
+    setAmount();
+    setDescription('');
   };
 
   return (
