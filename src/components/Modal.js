@@ -8,12 +8,9 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -74,7 +71,7 @@ function Modal(props) {
             sx={{ my: 2 }}
             value={amount}
             onChange={handleAmountChange}
-            inputProps={{ min: '0', step: "0.01", startAdornment: <InputAdornment position="start">€</InputAdornment> }} 
+            InputProps={{ min: "0", step: "0.01", startAdornment: <InputAdornment position="start">€</InputAdornment> }} 
             fullWidth
             label="Amount"
             type="number"
