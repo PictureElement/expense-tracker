@@ -10,6 +10,7 @@ function Expense() {
 
   const expenseAmounts = expenseItems.map(({amount}) => amount);
 
+  // expense is of Number type
   const expense = expenseAmounts.reduce(((previousAmount, currentAmount) => previousAmount + currentAmount), 0);
 
   return (
@@ -20,7 +21,8 @@ function Expense() {
       }}
     >
       <Box sx={{ color: 'text.secondary', typography: 'overline' }}>EXPENSE</Box>
-      <Box sx={{ color: 'error.main', typography: 'h5' }}>− € {expense}</Box>
+      {/* Use toFixed() to format and convert expense to a string for visual representation */}
+      <Box sx={{ color: 'error.main', typography: 'h5' }}>− € {expense.toFixed(2)}</Box>
     </Card>
   )
 }

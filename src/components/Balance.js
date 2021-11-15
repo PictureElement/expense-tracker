@@ -7,14 +7,15 @@ function Balance() {
   const [state, setState] = useContext(Context);
 
   const amounts = state.transactions.map(item => {
+    // Add sign
     if (item.type === 'expense') {
-      // Positive to negative
       return -Math.abs(item.amount);
     } else {
       return item.amount;
     }
   });
 
+  // balance is of Number type
   const balance = amounts.reduce(((previousAmount, currentAmount) => previousAmount + currentAmount), 0);
 
   return (
@@ -30,7 +31,9 @@ function Balance() {
       }}
     >
       <Box sx={{ color: 'text.secondary', typography: 'overline' }}>BALANCE</Box>
-      <Box sx={{ typography: 'h4' }}>{balance < 0 ? '−' : '+'} € {Math.abs(balance)}</Box>
+      {/* Convert balance to a positive number using Math.abs() */}
+      {/* Use toFixed() to format and convert it to a string for visual representation */}
+      <Box sx={{ typography: 'h4' }}>{balance < 0 ? '−' : '+'} € {Math.abs(balance).toFixed(2)}</Box>
     </Card>
   )
 }

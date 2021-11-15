@@ -10,6 +10,7 @@ function Income() {
 
   const incomeAmounts = incomeItems.map(({amount}) => amount);
 
+  // income is of Number type
   const income = incomeAmounts.reduce(((previousAmount, currentAmount) => previousAmount + currentAmount), 0);
 
   return (
@@ -20,7 +21,8 @@ function Income() {
       }}
     >
       <Box sx={{ color: 'text.secondary', typography: 'overline' }}>INCOME</Box>
-      <Box sx={{ color: 'success.main', typography: 'h5' }}>+ € {income}</Box>
+      {/* Use toFixed() to format and convert income to a string for visual representation */}
+      <Box sx={{ color: 'success.main', typography: 'h5' }}>+ € {income.toFixed(2)}</Box>
     </Card>
   )
 }

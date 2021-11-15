@@ -42,7 +42,8 @@ function Modal(props) {
   };
 
   const handleAmountChange = (e) => {
-    setAmount(e.target.value);
+    // String to Number type
+    setAmount(Number(e.target.value));
   };
 
   const handleDescriptionChange = (e) => {

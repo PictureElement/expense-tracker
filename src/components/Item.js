@@ -47,7 +47,8 @@ function Item({ item }) {
             mx: 1
           }}
         >
-          {item.type === 'income' ? '+' : '−'} € {item.amount}
+          {/* Use toFixed() to format and convert amount to a string for visual representation */}
+          {item.type === 'income' ? '+' : '−'} € {item.amount.toFixed(2)}
         </Box>
         <IconButton onClick={handleDeleteClick} aria-label="delete">
           <DeleteIcon />
