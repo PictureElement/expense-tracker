@@ -68,7 +68,7 @@ export default function ToggleColorMode() {
             ? {
                 // palette values for light mode
                 background: {
-                  default: grey[100]
+                  default: grey[50]
                 }
               }
             : {
