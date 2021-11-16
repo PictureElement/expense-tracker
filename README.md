@@ -20,10 +20,8 @@ $ npm run start
 
 ## Todo
 
-1. Add animations
-2. Integrate w. Firebase
-3. Add LocalStorage
-4. Improve design on mobile
+1. Integrate w. Firebase
+2. Add LocalStorage
 
 ## About Me
 
