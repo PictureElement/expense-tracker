@@ -41,7 +41,7 @@ function Item({ item }) {
       <Box sx={{ flex: '1 1 0', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
         <Box sx={{ mx: 1, whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
           {/* Use toFixed() to format and convert amount to a string for visual representation */}
-          {item.type === 'income' ? '+' : '−'} € {item.amount.toFixed(2)}
+          {item.type === 'income' ? '+' : '−'} € {item.amount}
         </Box>
         <IconButton onClick={handleDeleteClick} aria-label="delete">
           <DeleteIcon />

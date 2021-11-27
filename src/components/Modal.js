@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -16,10 +16,14 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import { Context } from '../context/Store';
+import validate from '../utils/validate';
 
 function Modal(props) {
 
   const { open, onClose } = props;
+
+  // Used to prevent useEffect from running on first render
+  const isMounted = useRef(false);
 
   const [state, setState] = useContext(Context);
 
@@ -28,45 +32,55 @@ function Modal(props) {
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   // State
-  const [type, setType] = useState('expense');
-  const [amount, setAmount] = useState(0);
-  const [description, setDescription] = useState('');
+  const [inputErrors, setInputErrors] = useState({});
+  const [inputValues, setInputValues] = useState({
+    type: 'expense',
+    amount: '',
+    description: ''
+  });
 
   // Callbacks
   const handleClose = () => {
     onClose();
   };
 
-  const handleTypeChange = (e) => {
-    setType(e.target.value);
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    console.log(e.target);
+    // Overwrite value for "name" property
+    setInputValues({...inputValues, [name]: value});
   };
 
-  const handleAmountChange = (e) => {
-    // String to Number type
-    setAmount(Number(e.target.value));
-  };
+  useEffect(() => {
+    if (isMounted.current) {
+      // If there are no errors, add transaction
+      if (Object.keys(inputErrors).length === 0) {
+        // Use ... spread syntax to create a new array using state array as part of it
+        setState({
+          ...state,
+          transactions: [{ id: state.transactions.length + 1, type: inputValues.type, amount: Number(inputValues.amount), description: inputValues.description }, ...state.transactions]
+        });
 
-  const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
-  };
+        // Close modal
+        onClose();
+
+        // Reset component state
+        setInputValues({
+          type: 'expense',
+          amount: '',
+          description: ''
+        });
+      }
+    } else {
+      isMounted.current = true;
+    }
+  }, [inputErrors]); // This is executed when 'setInputErrors' state changes
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Add transaction
-    // Use ... spread syntax to create a new array using state array as part of it
-    setState({
-      ...state,
-      transactions: [{ id: state.transactions.length + 1, type, amount, description }, ...state.transactions]
-    });
-
-    // Close modal
-    onClose();
-
-    // Reset component state
-    setType('expense');
-    setAmount(0);
-    setDescription('');
+    // Validate and set input errors.
+    setInputErrors(validate(inputValues));
   };
 
   return (
@@ -80,8 +94,8 @@ function Modal(props) {
               row
               aria-label="transaction type"
               name="type"
-              value={type}
-              onChange={handleTypeChange}
+              value={inputValues.type}
+              onChange={handleChange}
             >
               <FormControlLabel value="expense" control={<Radio />} label="Expense" />
               <FormControlLabel value="income" control={<Radio />} label="Income" />
@@ -89,28 +103,34 @@ function Modal(props) {
           </FormControl>
 
           <TextField
-            id="amount"
-            required
+            error={ inputErrors.amount ? true : null }
             sx={{ my: 2 }}
-            value={amount}
-            onChange={handleAmountChange}
-            InputProps={{ min: "0", step: "0.01", startAdornment: <InputAdornment position="start">€</InputAdornment> }} 
+            name="amount"
+            value={ inputValues.amount }
+            onChange={ handleChange }
+            helperText={ inputErrors.amount }
             fullWidth
+            id="amount"
             label="Amount"
-            type="number"
+            InputProps={{ 
+              startAdornment: <InputAdornment position="start">&euro;</InputAdornment>,
+              inputMode: 'decimal'
+            }}
           />
 
           <TextField
+            error={ inputErrors.description ? true : null }
+            name="description"
             id="description"
-            required
-            value={description}
-            onChange={handleDescriptionChange}
+            value={ inputValues.description }
+            onChange={ handleChange }
+            helperText={ inputErrors.description }
             fullWidth
             label="Description"
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={ handleClose }>Cancel</Button>
           <Button type="submit">Save</Button>
         </DialogActions>
       </form>
@@ -141,5 +161,3 @@ export default function ModalDemo() {
     </div>
   );
 }
-
-
