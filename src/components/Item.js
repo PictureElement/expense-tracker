@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Context } from '../context/Store';
+import './Item.css';
 
 function Item({ item }) {
   const [state, setState] = useContext(Context);
@@ -20,6 +21,7 @@ function Item({ item }) {
   return (
     <Card
       component="li"
+      className="fadeInUp"
       sx={{
         typography: 'body1',
         whiteSpace: 'nowrap',
