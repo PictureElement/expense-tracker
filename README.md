@@ -5,7 +5,7 @@ A simple expense tracker React application that uses Context to create a global 
 ## Quick Start
 
 ```shell
-$ git clone https://github.com/PictureElement/yatl.git
+$ git clone https://github.com/PictureElement/expense-tracker.git
 $ cd expense-tracker
 $ npm install
 $ npm run start
