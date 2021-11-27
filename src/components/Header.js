@@ -1,4 +1,5 @@
 import React from 'react'
+import { useContext } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,7 +12,8 @@ import { useTheme } from '@mui/material/styles';
 
 function Header(props) {
   const theme = useTheme();
-  const colorMode = React.useContext(props.ColorModeContext);
+  const colorMode = useContext(props.ColorModeContext);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">

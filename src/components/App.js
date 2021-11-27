@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { createContext, useMemo, useState, useEffect } from 'react';
 import './App.css';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -14,7 +15,7 @@ import List from './List';
 import Modal from './Modal';
 import Store from '../context/Store';
 
-const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 function App() {
   return (
@@ -49,17 +50,36 @@ function App() {
 }
 
 export default function ToggleColorMode() {
-  const [mode, setMode] = React.useState('light');
-  const colorMode = React.useMemo(
+  // Theme mode state
+  const [mode, setMode] = useState();
+
+  useEffect(() => {
+    if (localStorage.getItem('theme')) {
+      setMode(localStorage.getItem('theme'));
+    } else {
+      localStorage.setItem('theme', 'light');
+      setMode('light');
+    }
+  }, []);
+
+  const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+        setMode((prevMode) => {
+          if (prevMode === 'light') {
+            localStorage.setItem('theme', 'dark');
+            return 'dark';
+          } else {
+            localStorage.setItem('theme', 'light');
+            return 'light';
+          }
+        });
       },
     }),
     [],
   );
 
-  let theme = React.useMemo(
+  let theme = useMemo(
     () =>
       createTheme({
         palette: {

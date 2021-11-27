@@ -21,7 +21,6 @@ $ npm run start
 ## Todo
 
 1. Integrate w. Firebase
-2. Add LocalStorage
 
 ## About Me
 
