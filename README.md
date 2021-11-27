@@ -21,6 +21,8 @@ $ npm run start
 ## Todo
 
 1. Integrate w. Firebase
+2. Animations
+3. Form validation
 
 ## About Me
 

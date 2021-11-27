@@ -1,6 +1,6 @@
 {
   "name": "expense-tracker",
-  "homepage": "https://github.com/PictureElement/expense-tracker/",
+  "homepage": "https://pictureelement.github.io/expense-tracker/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
