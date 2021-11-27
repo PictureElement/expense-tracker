@@ -29,7 +29,7 @@ function Modal(props) {
 
   // State
   const [type, setType] = useState('expense');
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState(0);
   const [description, setDescription] = useState('');
 
   // Callbacks
@@ -65,7 +65,7 @@ function Modal(props) {
 
     // Reset component state
     setType('expense');
-    setAmount();
+    setAmount(0);
     setDescription('');
   };
 
@@ -119,7 +119,7 @@ function Modal(props) {
 }
 
 export default function ModalDemo() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);

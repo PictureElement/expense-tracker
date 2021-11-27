@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import { Context } from '../context/Store';
 
 function Income() {
-  const [state, setState] = useContext(Context);
+  const [state] = useContext(Context);
 
   const incomeItems = state.transactions.filter(item => item.type === 'income');
 

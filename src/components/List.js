@@ -6,7 +6,7 @@ import Item from './Item';
 import Empty from './Empty';
 
 function List() {
-  const [state, setState] = useContext(Context);
+  const [state] = useContext(Context);
   
   const items = state.transactions.map(item => (
     <Item item={item} key={item.id} />

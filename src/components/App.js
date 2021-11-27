@@ -64,6 +64,7 @@ export default function ToggleColorMode() {
 
   const colorMode = useMemo(
     () => ({
+      // The dark mode switch would invoke this method
       toggleColorMode: () => {
         setMode((prevMode) => {
           if (prevMode === 'light') {
@@ -79,6 +80,7 @@ export default function ToggleColorMode() {
     [],
   );
 
+  // Update the theme only if the mode changes
   let theme = useMemo(
     () =>
       createTheme({

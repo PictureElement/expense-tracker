@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import { Context } from '../context/Store';
 
 function Balance() {
-  const [state, setState] = useContext(Context);
+  const [state] = useContext(Context);
 
   const amounts = state.transactions.map(item => {
     // Add sign
