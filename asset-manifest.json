@@ -1,27 +1,27 @@
 {
   "files": {
     "main.css": "/expense-tracker/static/css/main.b58d93ff.chunk.css",
-    "main.js": "/expense-tracker/static/js/main.6814d31d.chunk.js",
-    "main.js.map": "/expense-tracker/static/js/main.6814d31d.chunk.js.map",
-    "runtime-main.js": "/expense-tracker/static/js/runtime-main.9c28d9b6.js",
-    "runtime-main.js.map": "/expense-tracker/static/js/runtime-main.9c28d9b6.js.map",
+    "main.js": "/expense-tracker/static/js/main.d5f160c4.chunk.js",
+    "main.js.map": "/expense-tracker/static/js/main.d5f160c4.chunk.js.map",
+    "runtime-main.js": "/expense-tracker/static/js/runtime-main.eaae1208.js",
+    "runtime-main.js.map": "/expense-tracker/static/js/runtime-main.eaae1208.js.map",
     "static/css/2.a1597f14.chunk.css": "/expense-tracker/static/css/2.a1597f14.chunk.css",
-    "static/js/2.f7cc8bd3.chunk.js": "/expense-tracker/static/js/2.f7cc8bd3.chunk.js",
-    "static/js/2.f7cc8bd3.chunk.js.map": "/expense-tracker/static/js/2.f7cc8bd3.chunk.js.map",
+    "static/js/2.5f23e860.chunk.js": "/expense-tracker/static/js/2.5f23e860.chunk.js",
+    "static/js/2.5f23e860.chunk.js.map": "/expense-tracker/static/js/2.5f23e860.chunk.js.map",
     "index.html": "/expense-tracker/index.html",
     "static/css/2.a1597f14.chunk.css.map": "/expense-tracker/static/css/2.a1597f14.chunk.css.map",
     "static/css/main.b58d93ff.chunk.css.map": "/expense-tracker/static/css/main.b58d93ff.chunk.css.map",
-    "static/js/2.f7cc8bd3.chunk.js.LICENSE.txt": "/expense-tracker/static/js/2.f7cc8bd3.chunk.js.LICENSE.txt",
+    "static/js/2.5f23e860.chunk.js.LICENSE.txt": "/expense-tracker/static/js/2.5f23e860.chunk.js.LICENSE.txt",
     "static/media/300.css": "/expense-tracker/static/media/roboto-vietnamese-300-normal.af9afdc1.woff2",
     "static/media/400.css": "/expense-tracker/static/media/roboto-vietnamese-400-normal.c0bec65d.woff2",
     "static/media/500.css": "/expense-tracker/static/media/roboto-vietnamese-500-normal.b8e494da.woff2",
     "static/media/700.css": "/expense-tracker/static/media/roboto-vietnamese-700-normal.3096f18a.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.9c28d9b6.js",
+    "static/js/runtime-main.eaae1208.js",
     "static/css/2.a1597f14.chunk.css",
-    "static/js/2.f7cc8bd3.chunk.js",
+    "static/js/2.5f23e860.chunk.js",
     "static/css/main.b58d93ff.chunk.css",
-    "static/js/main.6814d31d.chunk.js"
+    "static/js/main.d5f160c4.chunk.js"
   ]
 }
